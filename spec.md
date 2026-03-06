@@ -1,27 +1,48 @@
 # Elite Flow
 
 ## Current State
-The app has a `LoginPage.tsx` that shows directly when a user is not authenticated. It has a two-panel layout (left branding, right login form) with a single "Sign in with Internet Identity" button that immediately triggers Internet Identity authentication.
+
+Elite Flow is a full-stack SaaS productivity app with:
+- Internet Identity authentication (blocking -- app shows `LoadingScreen` while `isInitializing` is true)
+- A landing page for unauthenticated users
+- Dashboard with HabitTracker, TaskManager, and CashflowSystem all eagerly imported
+- CommunityPage with all three tabs (Announcements, General, DMs) eagerly imported
+- ProfilePage and ProfileSetupPage also eagerly imported
+- All page and component imports in `App.tsx` and `DashboardPage.tsx` are static (no `React.lazy`)
+- Vite config has `minify: false` which produces larger bundles
+- `index.html` already has an HTML/CSS loading screen (no blank page problem at HTML level)
+- `HideInitialLoader` hook removes the HTML loader once React mounts
+- Auth still blocks UI: `if (isInitializing) return <LoadingScreen />` -- nothing renders until AuthClient resolves
 
 ## Requested Changes (Diff)
 
 ### Add
-- A new `LandingPage.tsx` component shown before any authentication prompt
-- Full-screen landing hero with Elite Flow logo, headline "Level Up Your Life", description text, and two CTA buttons (Sign Up, Login)
-- Dark background with pink-purple gradient accents matching the existing Elite Flow brand
-- A state flag in `App.tsx` to control transition from landing → login (Internet Identity auth trigger)
+- `React.lazy` + `Suspense` boundaries for all heavy page components: `DashboardPage`, `CommunityPage`, `ProfilePage`, `ProfileSetupPage`, `LandingPage`
+- `React.lazy` + `Suspense` for heavy dashboard sub-components: `HabitTracker`, `TaskManager`, `CashflowSystem`, `WealthGoal`
+- Skeleton placeholder components for dashboard cards shown during lazy load (HabitSkeleton, TaskSkeleton, CashflowSkeleton)
+- `React.lazy` for `CommunityPage` so it only loads when navigated to
+- A `DashboardSkeleton` shell that renders the dashboard grid structure instantly before data arrives
+- Vite code-splitting: manual chunks config separating vendor, ICP/dfinity, chart/heavy UI from core app shell
 
 ### Modify
-- `App.tsx`: when the user is not authenticated, show `LandingPage` first. When either button is clicked, trigger the Internet Identity login flow directly (same as existing `handleAuth`).
-- `LoginPage.tsx` is effectively replaced/bypassed by the new landing page flow, but the underlying auth hook (`useInternetIdentity`) remains untouched.
+- `App.tsx`: Remove static imports of page components; replace with `React.lazy`. Auth initialization should NOT block rendering -- instead show LandingPage/skeleton immediately and resolve auth in background. Concretely: remove the `if (isInitializing) return <LoadingScreen />` gate; instead show the landing page optimistically while auth initializes, then transition once resolved.
+- `DashboardPage.tsx`: Replace static imports of `HabitTracker`, `TaskManager`, `CashflowSystem`, `WealthGoal` with `React.lazy` + `Suspense` with skeleton fallbacks. Dashboard header/greeting renders immediately; widget panels load asynchronously.
+- `vite.config.js`: Enable `minify: true` (or `'esbuild'`), add `build.rollupOptions.output.manualChunks` to split: `vendor` (react, react-dom, tanstack), `icp` (@dfinity/*, @icp-sdk/*), `ui` (lucide-react, shadcn components), app chunks per route.
 
 ### Remove
-- Nothing removed — the existing auth system and all other pages remain intact.
+- The `if (isInitializing) return <LoadingScreen />` blocking gate in `App.tsx`
+- The profile-loading blocking gate (`if (profileLoading) return <LoadingScreen />`) -- replace with skeleton or allow dashboard to render with placeholder data while profile loads
 
 ## Implementation Plan
-1. Create `src/pages/LandingPage.tsx` with:
-   - Full-screen dark background, pink-purple gradient orbs/accents
-   - Centered layout: logo (Zap icon + "Elite Flow" text), headline, description, two gradient buttons (Sign Up / Login)
-   - Both buttons call `login()` from `useInternetIdentity` hook — same as the existing LoginPage
-2. Update `App.tsx`: when `!isAuthenticated`, render `<LandingPage />` instead of `<LoginPage />`
-3. Apply deterministic `data-ocid` markers to landing page buttons and sections
+
+1. **vite.config.js** -- Enable minification (`minify: 'esbuild'`). Add `rollupOptions.output.manualChunks` splitting react/tanstack into `vendor`, dfinity/icp into `icp`, lucide/radix into `ui`.
+
+2. **App.tsx** -- Convert all page imports to `React.lazy`. Remove blocking `isInitializing` and `profileLoading` gates. Auth runs in background: show LandingPage while auth initializes (unauthenticated/unknown state both show landing), transition to app once auth completes. Wrap router in `<Suspense>` with lightweight fallback.
+
+3. **DashboardPage.tsx** -- Lazy-import HabitTracker, TaskManager, CashflowSystem, WealthGoal. Add inline skeleton fallbacks for each card. Dashboard greeting/header renders on first paint.
+
+4. **Skeleton components** -- Create lightweight inline skeletons (pulsing placeholder blocks) inside DashboardPage for each widget card.
+
+5. **CommunityPage.tsx** -- Messages already load via react-query (data arrives after render). No structural change needed; confirm lazy import boundary is set at the route level.
+
+6. **QueryClient config** -- Set `staleTime` and `gcTime` to improve re-navigation cache hit rates so data doesn't refetch on every route change.

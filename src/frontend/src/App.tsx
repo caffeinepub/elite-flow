@@ -8,16 +8,18 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import { Zap } from "lucide-react";
-import { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import AppLayout from "./components/AppLayout";
 import { useInternetIdentity } from "./hooks/useInternetIdentity";
 import { useGetCallerUserProfile } from "./hooks/useQueries";
-import CommunityPage from "./pages/CommunityPage";
-import DashboardPage from "./pages/DashboardPage";
-import LandingPage from "./pages/LandingPage";
-import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
-import ProfileSetupPage from "./pages/ProfileSetupPage";
+
+// ─── Lazy page imports ────────────────────────────────────────────────────────
+
+const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
+const CommunityPage = React.lazy(() => import("./pages/CommunityPage"));
+const ProfilePage = React.lazy(() => import("./pages/ProfilePage"));
+const ProfileSetupPage = React.lazy(() => import("./pages/ProfileSetupPage"));
+const LandingPage = React.lazy(() => import("./pages/LandingPage"));
 
 // ─── Hide initial HTML loader once React mounts ───────────────────────────────
 
@@ -190,42 +192,54 @@ export default function App() {
     isFetched: profileFetched,
   } = useGetCallerUserProfile();
 
-  if (isInitializing)
+  // While auth is still initializing AND not yet authenticated, show landing
+  // page immediately. This prevents blank screen during the auth check.
+  if (isInitializing && !isAuthenticated) {
     return (
       <>
         <HideInitialLoader />
-        <LoadingScreen />
-      </>
-    );
-
-  if (!isAuthenticated) {
-    return (
-      <>
-        <HideInitialLoader />
-        <LandingPage />
+        <Suspense fallback={<LoadingScreen />}>
+          <LandingPage />
+        </Suspense>
         <Toaster richColors position="top-right" />
       </>
     );
   }
 
-  if (profileLoading)
+  if (!isAuthenticated) {
+    return (
+      <>
+        <HideInitialLoader />
+        <Suspense fallback={<LoadingScreen />}>
+          <LandingPage />
+        </Suspense>
+        <Toaster richColors position="top-right" />
+      </>
+    );
+  }
+
+  if (profileLoading) {
     return (
       <>
         <HideInitialLoader />
         <LoadingScreen />
       </>
     );
+  }
 
   const showProfileSetup =
     isAuthenticated &&
     !profileLoading &&
     profileFetched &&
     userProfile === null;
+
   if (showProfileSetup) {
     return (
       <>
         <HideInitialLoader />
-        <ProfileSetupPage />
+        <Suspense fallback={<LoadingScreen />}>
+          <ProfileSetupPage />
+        </Suspense>
         <Toaster richColors position="top-right" />
       </>
     );
@@ -234,7 +248,9 @@ export default function App() {
   return (
     <>
       <HideInitialLoader />
-      <RouterProvider router={router} />
+      <Suspense fallback={<LoadingScreen />}>
+        <RouterProvider router={router} />
+      </Suspense>
       <Toaster richColors position="top-right" />
     </>
   );
