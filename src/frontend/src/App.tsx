@@ -13,6 +13,7 @@ import { useInternetIdentity } from "./hooks/useInternetIdentity";
 import { useGetCallerUserProfile } from "./hooks/useQueries";
 import CommunityPage from "./pages/CommunityPage";
 import DashboardPage from "./pages/DashboardPage";
+import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileSetupPage from "./pages/ProfileSetupPage";
@@ -126,7 +127,7 @@ export default function App() {
   if (!isAuthenticated) {
     return (
       <>
-        <LoginPage />
+        <LandingPage />
         <Toaster richColors position="top-right" />
       </>
     );
