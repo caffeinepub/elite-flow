@@ -4,9 +4,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elite Flow — Master Your Daily Flow</title>
     <meta name="description" content="Track habits, manage tasks, and control your cashflow with Elite Flow — your all-in-one productivity platform." />
-    <meta name="theme-color" content="#1a1f35" />
+    <meta name="theme-color" content="#0B0B0F" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #0B0B0F;
+        gap: 20px;
+        z-index: 9999;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      #initial-loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #FF4D8D, #7C3AED);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 32px rgba(255, 77, 141, 0.4), 0 0 64px rgba(124, 58, 237, 0.2);
+      }
+
+      .loader-logo svg {
+        width: 32px;
+        height: 32px;
+        color: white;
+      }
+
+      .loader-brand {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #FF4D8D, #7C3AED);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .loader-orb-pink {
+        position: fixed;
+        top: -120px;
+        right: -80px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 77, 141, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .loader-orb-purple {
+        position: fixed;
+        bottom: -100px;
+        left: -80px;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .loader-text {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.45);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .loader-spinner {
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 77, 141, 0.25);
+        border-top-color: #FF4D8D;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
-  <body>
+  <body style="background:#0B0B0F;">
+    <div id="initial-loader">
+      <div class="loader-orb-pink"></div>
+      <div class="loader-orb-purple"></div>
+      <div class="loader-logo">
+        <!-- Zap icon (lucide) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:white">
+          <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <div class="loader-brand">Elite Flow</div>
+      <div class="loader-text">
+        <div class="loader-spinner"></div>
+        Loading Elite Flow...
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

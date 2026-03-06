@@ -7,7 +7,8 @@ import {
   createRoute,
   createRouter,
 } from "@tanstack/react-router";
-import { Loader2, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
+import { useEffect, useRef } from "react";
 import AppLayout from "./components/AppLayout";
 import { useInternetIdentity } from "./hooks/useInternetIdentity";
 import { useGetCallerUserProfile } from "./hooks/useQueries";
@@ -18,17 +19,84 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileSetupPage from "./pages/ProfileSetupPage";
 
+// ─── Hide initial HTML loader once React mounts ───────────────────────────────
+
+function HideInitialLoader() {
+  const dismissed = useRef(false);
+  useEffect(() => {
+    if (dismissed.current) return;
+    dismissed.current = true;
+    const loader = document.getElementById("initial-loader");
+    if (loader) {
+      loader.classList.add("hidden");
+      setTimeout(() => loader.remove(), 450);
+    }
+  }, []);
+  return null;
+}
+
 // ─── Loading Screen ───────────────────────────────────────────────────────────
 
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background gap-4">
-      <div className="w-12 h-12 rounded-2xl gradient-brand flex items-center justify-center">
-        <Zap className="w-6 h-6 text-white" />
+    <div
+      className="min-h-screen flex flex-col items-center justify-center gap-5 relative overflow-hidden"
+      style={{ background: "#0B0B0F" }}
+    >
+      {/* Ambient orbs */}
+      <div
+        className="pointer-events-none fixed top-[-120px] right-[-80px] w-[400px] h-[400px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,77,141,0.15) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="pointer-events-none fixed bottom-[-100px] left-[-80px] w-[360px] h-[360px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Logo */}
+      <div
+        className="w-16 h-16 rounded-2xl flex items-center justify-center"
+        style={{
+          background: "linear-gradient(135deg, #FF4D8D, #7C3AED)",
+          boxShadow:
+            "0 0 32px rgba(255,77,141,0.4), 0 0 64px rgba(124,58,237,0.2)",
+        }}
+      >
+        <Zap className="w-8 h-8 text-white" />
       </div>
-      <div className="flex items-center gap-2 text-muted-foreground">
-        <Loader2 className="w-4 h-4 animate-spin" />
-        <span className="text-sm">Loading Elite Flow...</span>
+
+      {/* Brand name */}
+      <span
+        className="text-2xl font-bold tracking-tight"
+        style={{
+          background: "linear-gradient(135deg, #FF4D8D, #7C3AED)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        Elite Flow
+      </span>
+
+      {/* Status */}
+      <div
+        className="flex items-center gap-2"
+        style={{ color: "rgba(255,255,255,0.45)", fontSize: 14 }}
+      >
+        <div
+          className="w-3.5 h-3.5 rounded-full border-2 animate-spin"
+          style={{
+            borderColor: "rgba(255,77,141,0.25)",
+            borderTopColor: "#FF4D8D",
+          }}
+        />
+        Loading Elite Flow...
       </div>
     </div>
   );
@@ -122,18 +190,31 @@ export default function App() {
     isFetched: profileFetched,
   } = useGetCallerUserProfile();
 
-  if (isInitializing) return <LoadingScreen />;
+  if (isInitializing)
+    return (
+      <>
+        <HideInitialLoader />
+        <LoadingScreen />
+      </>
+    );
 
   if (!isAuthenticated) {
     return (
       <>
+        <HideInitialLoader />
         <LandingPage />
         <Toaster richColors position="top-right" />
       </>
     );
   }
 
-  if (profileLoading) return <LoadingScreen />;
+  if (profileLoading)
+    return (
+      <>
+        <HideInitialLoader />
+        <LoadingScreen />
+      </>
+    );
 
   const showProfileSetup =
     isAuthenticated &&
@@ -143,6 +224,7 @@ export default function App() {
   if (showProfileSetup) {
     return (
       <>
+        <HideInitialLoader />
         <ProfileSetupPage />
         <Toaster richColors position="top-right" />
       </>
@@ -151,6 +233,7 @@ export default function App() {
 
   return (
     <>
+      <HideInitialLoader />
       <RouterProvider router={router} />
       <Toaster richColors position="top-right" />
     </>
