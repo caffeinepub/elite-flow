@@ -131,7 +131,7 @@ export default function ProfilePage() {
 
         <div className="space-y-6">
           {/* Avatar section */}
-          <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
+          <div className="p-6 rounded-2xl bg-card card-glow">
             <div className="flex items-center gap-5">
               {/* Avatar with photo upload */}
               <div
@@ -158,7 +158,7 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-md hover:bg-primary/90 transition-colors"
+                  className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full gradient-brand flex items-center justify-center shadow-glow-pink hover:opacity-90 transition-opacity"
                   title="Change photo"
                   data-ocid="profile.upload_button"
                 >
@@ -252,7 +252,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Edit profile form */}
-          <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
+          <div className="p-6 rounded-2xl bg-card card-glow">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
               <User className="w-4 h-4 text-muted-foreground" />
               Edit Profile
@@ -307,7 +307,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Account info */}
-          <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
+          <div className="p-6 rounded-2xl bg-card card-glow">
             <h3 className="font-semibold mb-4">Account Information</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2 border-b border-border">

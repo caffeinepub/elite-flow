@@ -24,71 +24,89 @@
   :root {
     --radius: 0.75rem;
 
-    /* Elite Flow - Dark Navy + Deep Blue + Purple Accent (forced dark) */
-    --background: 0.12 0.028 264;
-    --foreground: 0.95 0.012 260;
-    --card: 0.16 0.032 264;
-    --card-foreground: 0.95 0.012 260;
-    --popover: 0.18 0.035 264;
-    --popover-foreground: 0.95 0.012 260;
-    --primary: 0.55 0.22 262;
+    /* Elite Flow — Deep Black + Pink-Purple (forced dark) */
+    /* Background: #0B0B0F → oklch ~0.07 0.012 290 */
+    --background: 0.07 0.012 290;
+    --foreground: 0.97 0.006 290;
+
+    /* Cards: slightly lighter than background with subtle purple tint */
+    --card: 0.11 0.018 290;
+    --card-foreground: 0.95 0.008 290;
+
+    --popover: 0.13 0.022 290;
+    --popover-foreground: 0.95 0.008 290;
+
+    /* Primary: Pink #FF4D8D → oklch ~0.64 0.26 352 */
+    --primary: 0.64 0.26 352;
     --primary-foreground: 0.98 0 0;
-    --secondary: 0.22 0.04 264;
-    --secondary-foreground: 0.88 0.012 260;
-    --muted: 0.20 0.036 264;
-    --muted-foreground: 0.58 0.02 264;
-    --accent: 0.50 0.25 292;
+
+    /* Secondary: muted dark purple surface */
+    --secondary: 0.15 0.030 290;
+    --secondary-foreground: 0.90 0.010 290;
+
+    --muted: 0.14 0.025 290;
+    --muted-foreground: 0.55 0.018 290;
+
+    /* Accent: Purple #7C3AED → oklch ~0.50 0.27 293 */
+    --accent: 0.50 0.27 293;
     --accent-foreground: 0.98 0 0;
+
     --destructive: 0.62 0.23 27;
     --destructive-foreground: 0.98 0 0;
-    --border: 0.24 0.04 264;
-    --input: 0.24 0.04 264;
-    --ring: 0.55 0.22 262;
 
-    /* Charts */
+    /* Border: subtle purple-tinted glow border */
+    --border: 0.22 0.040 293;
+    --input: 0.20 0.035 290;
+    --ring: 0.64 0.26 352;
+
+    /* Charts — PRESERVED exactly as-is for CashFlow */
     --chart-1: 0.55 0.22 262;
     --chart-2: 0.65 0.18 150;
     --chart-3: 0.50 0.25 292;
     --chart-4: 0.65 0.22 30;
     --chart-5: 0.60 0.20 200;
 
-    /* Sidebar */
-    --sidebar: 0.10 0.026 264;
-    --sidebar-foreground: 0.92 0.012 260;
-    --sidebar-primary: 0.55 0.22 262;
+    /* Sidebar: deepest dark */
+    --sidebar: 0.06 0.012 290;
+    --sidebar-foreground: 0.90 0.010 290;
+    --sidebar-primary: 0.64 0.26 352;
     --sidebar-primary-foreground: 0.98 0 0;
-    --sidebar-accent: 0.18 0.038 264;
-    --sidebar-accent-foreground: 0.92 0.012 260;
-    --sidebar-border: 0.20 0.036 264;
-    --sidebar-ring: 0.55 0.22 262;
+    --sidebar-accent: 0.14 0.030 290;
+    --sidebar-accent-foreground: 0.90 0.010 290;
+    --sidebar-border: 0.16 0.030 290;
+    --sidebar-ring: 0.64 0.26 352;
 
     /* Custom tokens */
     --gold: 0.80 0.17 72;
     --gold-foreground: 0.15 0.05 72;
     --emerald: 0.70 0.17 152;
     --ember: 0.68 0.22 30;
+
+    /* Elite Flow custom gradient stops */
+    --pink: 0.64 0.26 352;
+    --purple: 0.50 0.27 293;
   }
 
   .dark {
-    --background: 0.12 0.028 264;
-    --foreground: 0.95 0.012 260;
-    --card: 0.16 0.032 264;
-    --card-foreground: 0.95 0.012 260;
-    --popover: 0.18 0.035 264;
-    --popover-foreground: 0.95 0.012 260;
-    --primary: 0.55 0.22 262;
+    --background: 0.07 0.012 290;
+    --foreground: 0.97 0.006 290;
+    --card: 0.11 0.018 290;
+    --card-foreground: 0.95 0.008 290;
+    --popover: 0.13 0.022 290;
+    --popover-foreground: 0.95 0.008 290;
+    --primary: 0.64 0.26 352;
     --primary-foreground: 0.98 0 0;
-    --secondary: 0.22 0.04 264;
-    --secondary-foreground: 0.88 0.012 260;
-    --muted: 0.20 0.036 264;
-    --muted-foreground: 0.58 0.02 264;
-    --accent: 0.50 0.25 292;
+    --secondary: 0.15 0.030 290;
+    --secondary-foreground: 0.90 0.010 290;
+    --muted: 0.14 0.025 290;
+    --muted-foreground: 0.55 0.018 290;
+    --accent: 0.50 0.27 293;
     --accent-foreground: 0.98 0 0;
     --destructive: 0.62 0.23 27;
     --destructive-foreground: 0.98 0 0;
-    --border: 0.24 0.04 264;
-    --input: 0.24 0.04 264;
-    --ring: 0.55 0.22 262;
+    --border: 0.22 0.040 293;
+    --input: 0.20 0.035 290;
+    --ring: 0.64 0.26 352;
 
     --chart-1: 0.55 0.22 262;
     --chart-2: 0.65 0.18 150;
@@ -96,19 +114,22 @@
     --chart-4: 0.65 0.22 30;
     --chart-5: 0.60 0.20 200;
 
-    --sidebar: 0.10 0.026 264;
-    --sidebar-foreground: 0.92 0.012 260;
-    --sidebar-primary: 0.55 0.22 262;
+    --sidebar: 0.06 0.012 290;
+    --sidebar-foreground: 0.90 0.010 290;
+    --sidebar-primary: 0.64 0.26 352;
     --sidebar-primary-foreground: 0.98 0 0;
-    --sidebar-accent: 0.18 0.038 264;
-    --sidebar-accent-foreground: 0.92 0.012 260;
-    --sidebar-border: 0.20 0.036 264;
-    --sidebar-ring: 0.55 0.22 262;
+    --sidebar-accent: 0.14 0.030 290;
+    --sidebar-accent-foreground: 0.90 0.010 290;
+    --sidebar-border: 0.16 0.030 290;
+    --sidebar-ring: 0.64 0.26 352;
 
     --gold: 0.80 0.17 72;
     --gold-foreground: 0.15 0.05 72;
     --emerald: 0.70 0.17 152;
     --ember: 0.68 0.22 30;
+
+    --pink: 0.64 0.26 352;
+    --purple: 0.50 0.27 293;
   }
 
   * {
@@ -139,25 +160,39 @@
     font-family: "Satoshi", system-ui, sans-serif;
   }
 
+  /* Elite Flow primary gradient: Pink → Purple */
   .gradient-brand {
-    background: linear-gradient(135deg, oklch(0.55 0.22 262), oklch(0.50 0.25 292));
+    background: linear-gradient(135deg, oklch(0.64 0.26 352), oklch(0.50 0.27 293));
   }
 
+  /* Gold gradient retained for wealth goal */
   .gradient-gold {
     background: linear-gradient(135deg, oklch(var(--gold)), oklch(0.68 0.18 55));
   }
 
+  /* Brand text gradient */
   .text-gradient-brand {
-    background: linear-gradient(135deg, oklch(0.65 0.22 262), oklch(0.60 0.25 292));
+    background: linear-gradient(135deg, oklch(0.72 0.24 352), oklch(0.60 0.25 293));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Glass card with purple glow border */
   .glass-card {
-    background: oklch(var(--card) / 0.7);
+    background: oklch(var(--card) / 0.8);
     backdrop-filter: blur(12px);
-    border: 1px solid oklch(var(--border) / 0.6);
+    border: 1px solid oklch(var(--border) / 0.7);
+    box-shadow: 0 0 0 1px oklch(0.50 0.27 293 / 0.12), 0 4px 24px oklch(0.50 0.27 293 / 0.08);
+  }
+
+  /* Card glow border effect */
+  .card-glow {
+    border: 1px solid oklch(0.50 0.27 293 / 0.30);
+    box-shadow:
+      0 0 0 1px oklch(0.50 0.27 293 / 0.10),
+      0 4px 20px oklch(0.50 0.27 293 / 0.12),
+      inset 0 1px 0 oklch(0.64 0.26 352 / 0.06);
   }
 
   .sidebar-item {
@@ -165,16 +200,18 @@
   }
 
   .sidebar-item-active {
-    background: oklch(var(--sidebar-accent));
-    color: oklch(var(--sidebar-accent-foreground));
+    background: linear-gradient(135deg, oklch(0.64 0.26 352 / 0.18), oklch(0.50 0.27 293 / 0.18));
+    color: oklch(0.90 0.010 290);
+    border: 1px solid oklch(0.50 0.27 293 / 0.30);
   }
 
   .sidebar-item-inactive {
-    color: oklch(var(--sidebar-foreground) / 0.65);
+    color: oklch(var(--sidebar-foreground) / 0.60);
+    border: 1px solid transparent;
   }
 
   .sidebar-item-inactive:hover {
-    background: oklch(var(--sidebar-accent) / 0.5);
+    background: oklch(0.50 0.27 293 / 0.10);
     color: oklch(var(--sidebar-foreground));
   }
 
@@ -182,14 +219,16 @@
     filter: drop-shadow(0 0 6px oklch(0.80 0.20 42));
   }
 
+  /* Progress bar: Pink → Purple gradient */
   .progress-bar-fill {
-    background: linear-gradient(90deg, oklch(var(--primary)), oklch(0.60 0.22 280));
+    background: linear-gradient(90deg, oklch(0.64 0.26 352), oklch(0.50 0.27 293));
+    box-shadow: 0 0 8px oklch(0.64 0.26 352 / 0.45);
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .message-bubble-self {
-    background: oklch(var(--primary));
-    color: oklch(var(--primary-foreground));
+    background: linear-gradient(135deg, oklch(0.64 0.26 352), oklch(0.50 0.27 293));
+    color: oklch(0.98 0 0);
     border-radius: 1rem 1rem 0.25rem 1rem;
   }
 
@@ -207,8 +246,13 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: oklch(var(--border));
+    background: oklch(0.50 0.27 293 / 0.35);
     border-radius: 2px;
+  }
+
+  /* Button glow effect for primary buttons */
+  .btn-glow {
+    box-shadow: 0 4px 20px oklch(0.64 0.26 352 / 0.40), 0 0 0 1px oklch(0.64 0.26 352 / 0.20);
   }
 }
 

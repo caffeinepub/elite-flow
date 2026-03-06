@@ -29,17 +29,17 @@ export default function DashboardPage() {
         {/* Main panels grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
           {/* Habit Tracker */}
-          <div className="p-5 rounded-2xl bg-card border border-border shadow-card min-h-80">
+          <div className="p-5 rounded-2xl bg-card card-glow min-h-80">
             <HabitTracker />
           </div>
 
           {/* Task Manager */}
-          <div className="p-5 rounded-2xl bg-card border border-border shadow-card min-h-80">
+          <div className="p-5 rounded-2xl bg-card card-glow min-h-80">
             <TaskManager />
           </div>
 
           {/* Cashflow System */}
-          <div className="p-5 rounded-2xl bg-card border border-border shadow-card min-h-80 md:col-span-2 xl:col-span-1">
+          <div className="p-5 rounded-2xl bg-card card-glow min-h-80 md:col-span-2 xl:col-span-1">
             <CashflowSystem />
           </div>
         </div>

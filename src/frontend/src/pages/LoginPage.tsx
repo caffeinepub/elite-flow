@@ -52,9 +52,9 @@ export default function LoginPage() {
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `
-              radial-gradient(circle at 20% 20%, oklch(0.58 0.18 264) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, oklch(0.55 0.2 280) 0%, transparent 50%),
-              radial-gradient(circle at 60% 40%, oklch(0.75 0.17 70) 0%, transparent 40%)
+              radial-gradient(circle at 20% 20%, oklch(0.64 0.26 352) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, oklch(0.50 0.27 293) 0%, transparent 50%),
+              radial-gradient(circle at 60% 40%, oklch(0.64 0.26 352 / 0.4) 0%, transparent 40%)
             `,
           }}
         />
@@ -87,8 +87,8 @@ export default function LoginPage() {
               className="p-4 rounded-xl bg-sidebar-accent/50 border border-sidebar-border/50 backdrop-blur-sm"
             >
               <Icon
-                className="w-5 h-5 text-primary mb-2"
-                style={{ color: "oklch(0.65 0.18 264)" }}
+                className="w-5 h-5 mb-2"
+                style={{ color: "oklch(0.70 0.24 352)" }}
               />
               <div className="font-display font-semibold text-sidebar-foreground text-sm">
                 {label}

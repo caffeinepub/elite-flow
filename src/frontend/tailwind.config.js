@@ -77,6 +77,12 @@ export default {
         },
         emerald: "oklch(var(--emerald))",
         ember: "oklch(var(--ember))",
+        pink: {
+          DEFAULT: "oklch(var(--pink))",
+        },
+        purple: {
+          DEFAULT: "oklch(var(--purple))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -87,9 +93,11 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        card: "0 1px 3px 0 rgba(0,0,0,0.08), 0 1px 2px -1px rgba(0,0,0,0.05)",
-        "card-hover": "0 4px 16px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.08)",
-        primary: "0 4px 20px -2px oklch(var(--primary) / 0.35)",
+        card: "0 1px 3px 0 rgba(0,0,0,0.15), 0 0 0 1px oklch(0.50 0.27 293 / 0.15)",
+        "card-hover": "0 4px 20px 0 oklch(0.50 0.27 293 / 0.20), 0 0 0 1px oklch(0.64 0.26 352 / 0.20)",
+        primary: "0 4px 20px -2px oklch(0.64 0.26 352 / 0.50), 0 0 8px oklch(0.50 0.27 293 / 0.30)",
+        "glow-pink": "0 0 20px oklch(0.64 0.26 352 / 0.40), 0 4px 16px oklch(0.64 0.26 352 / 0.25)",
+        "glow-purple": "0 0 20px oklch(0.50 0.27 293 / 0.40), 0 4px 16px oklch(0.50 0.27 293 / 0.25)",
       },
       keyframes: {
         "accordion-down": {

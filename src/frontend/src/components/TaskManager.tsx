@@ -183,7 +183,11 @@ export default function TaskManager() {
               style={{
                 width: `${completionRate}%`,
                 background:
-                  "linear-gradient(90deg, oklch(0.67 0.17 152), oklch(0.55 0.18 150))",
+                  "linear-gradient(90deg, oklch(0.64 0.26 352), oklch(0.50 0.27 293))",
+                boxShadow:
+                  completionRate > 0
+                    ? "0 0 8px oklch(0.64 0.26 352 / 0.45)"
+                    : "none",
               }}
             />
           </div>

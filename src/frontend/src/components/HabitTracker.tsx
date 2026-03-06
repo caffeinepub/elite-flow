@@ -76,7 +76,7 @@ export default function HabitTracker() {
             {totalCompleted}/{habits.length} done today
           </p>
         </div>
-        <div className="flex items-center gap-1 text-sm font-medium px-2.5 py-1 rounded-full bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400 border border-orange-100 dark:border-orange-900/30">
+        <div className="flex items-center gap-1 text-sm font-medium px-2.5 py-1 rounded-full bg-pink/10 text-pink border border-pink/20">
           <Flame className="w-3.5 h-3.5 streak-flame" />
           Streaks
         </div>

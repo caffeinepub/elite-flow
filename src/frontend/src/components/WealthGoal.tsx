@@ -41,7 +41,7 @@ export default function WealthGoal() {
   return (
     <div
       data-ocid="wealth.progress_panel"
-      className="p-6 rounded-2xl bg-card border border-border shadow-card"
+      className="p-6 rounded-2xl bg-card card-glow"
     >
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
@@ -155,10 +155,10 @@ export default function WealthGoal() {
                   style={{
                     width: `${percentage}%`,
                     background:
-                      "linear-gradient(90deg, oklch(0.55 0.18 264), oklch(0.76 0.17 72))",
+                      "linear-gradient(90deg, oklch(0.64 0.26 352), oklch(0.50 0.27 293))",
                     boxShadow:
                       percentage > 0
-                        ? "0 0 12px oklch(0.76 0.17 72 / 0.4)"
+                        ? "0 0 14px oklch(0.64 0.26 352 / 0.50)"
                         : "none",
                   }}
                 />
