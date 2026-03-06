@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bricolage Grotesque - Display font */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Satoshi - Body font */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi[wght].woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Elite Flow - Dark Navy + Deep Blue + Purple Accent (forced dark) */
+    --background: 0.12 0.028 264;
+    --foreground: 0.95 0.012 260;
+    --card: 0.16 0.032 264;
+    --card-foreground: 0.95 0.012 260;
+    --popover: 0.18 0.035 264;
+    --popover-foreground: 0.95 0.012 260;
+    --primary: 0.55 0.22 262;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.22 0.04 264;
+    --secondary-foreground: 0.88 0.012 260;
+    --muted: 0.20 0.036 264;
+    --muted-foreground: 0.58 0.02 264;
+    --accent: 0.50 0.25 292;
+    --accent-foreground: 0.98 0 0;
+    --destructive: 0.62 0.23 27;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.24 0.04 264;
+    --input: 0.24 0.04 264;
+    --ring: 0.55 0.22 262;
+
+    /* Charts */
+    --chart-1: 0.55 0.22 262;
+    --chart-2: 0.65 0.18 150;
+    --chart-3: 0.50 0.25 292;
+    --chart-4: 0.65 0.22 30;
+    --chart-5: 0.60 0.20 200;
+
+    /* Sidebar */
+    --sidebar: 0.10 0.026 264;
+    --sidebar-foreground: 0.92 0.012 260;
+    --sidebar-primary: 0.55 0.22 262;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.18 0.038 264;
+    --sidebar-accent-foreground: 0.92 0.012 260;
+    --sidebar-border: 0.20 0.036 264;
+    --sidebar-ring: 0.55 0.22 262;
+
+    /* Custom tokens */
+    --gold: 0.80 0.17 72;
+    --gold-foreground: 0.15 0.05 72;
+    --emerald: 0.70 0.17 152;
+    --ember: 0.68 0.22 30;
+  }
+
+  .dark {
+    --background: 0.12 0.028 264;
+    --foreground: 0.95 0.012 260;
+    --card: 0.16 0.032 264;
+    --card-foreground: 0.95 0.012 260;
+    --popover: 0.18 0.035 264;
+    --popover-foreground: 0.95 0.012 260;
+    --primary: 0.55 0.22 262;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.22 0.04 264;
+    --secondary-foreground: 0.88 0.012 260;
+    --muted: 0.20 0.036 264;
+    --muted-foreground: 0.58 0.02 264;
+    --accent: 0.50 0.25 292;
+    --accent-foreground: 0.98 0 0;
+    --destructive: 0.62 0.23 27;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.24 0.04 264;
+    --input: 0.24 0.04 264;
+    --ring: 0.55 0.22 262;
+
+    --chart-1: 0.55 0.22 262;
+    --chart-2: 0.65 0.18 150;
+    --chart-3: 0.50 0.25 292;
+    --chart-4: 0.65 0.22 30;
+    --chart-5: 0.60 0.20 200;
+
+    --sidebar: 0.10 0.026 264;
+    --sidebar-foreground: 0.92 0.012 260;
+    --sidebar-primary: 0.55 0.22 262;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.18 0.038 264;
+    --sidebar-accent-foreground: 0.92 0.012 260;
+    --sidebar-border: 0.20 0.036 264;
+    --sidebar-ring: 0.55 0.22 262;
+
+    --gold: 0.80 0.17 72;
+    --gold-foreground: 0.15 0.05 72;
+    --emerald: 0.70 0.17 152;
+    --ember: 0.68 0.22 30;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: "Satoshi", system-ui, sans-serif;
+  }
+
+  .gradient-brand {
+    background: linear-gradient(135deg, oklch(0.55 0.22 262), oklch(0.50 0.25 292));
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(var(--gold)), oklch(0.68 0.18 55));
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(135deg, oklch(0.65 0.22 262), oklch(0.60 0.25 292));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: oklch(var(--card) / 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid oklch(var(--border) / 0.6);
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150;
+  }
+
+  .sidebar-item-active {
+    background: oklch(var(--sidebar-accent));
+    color: oklch(var(--sidebar-accent-foreground));
+  }
+
+  .sidebar-item-inactive {
+    color: oklch(var(--sidebar-foreground) / 0.65);
+  }
+
+  .sidebar-item-inactive:hover {
+    background: oklch(var(--sidebar-accent) / 0.5);
+    color: oklch(var(--sidebar-foreground));
+  }
+
+  .streak-flame {
+    filter: drop-shadow(0 0 6px oklch(0.80 0.20 42));
+  }
+
+  .progress-bar-fill {
+    background: linear-gradient(90deg, oklch(var(--primary)), oklch(0.60 0.22 280));
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .message-bubble-self {
+    background: oklch(var(--primary));
+    color: oklch(var(--primary-foreground));
+    border-radius: 1rem 1rem 0.25rem 1rem;
+  }
+
+  .message-bubble-other {
+    background: oklch(var(--muted));
+    color: oklch(var(--foreground));
+    border-radius: 1rem 1rem 1rem 0.25rem;
+  }
+
+  /* Smooth scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 2px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+/* Staggered children */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
