@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import Footer from "../components/Footer";
+import XPLevelBar from "../components/XPLevelBar";
 import { useGetCallerUserProfile } from "../hooks/useQueries";
 
 // ─── Lazy-loaded heavy widgets ────────────────────────────────────────────────
@@ -51,6 +52,15 @@ export default function DashboardPage() {
             Here's your productivity overview for today.
           </p>
         </div>
+
+        {/* XP Level Bar — full width, above module cards */}
+        <Suspense
+          fallback={
+            <div className="h-20 bg-muted/20 rounded-2xl animate-pulse" />
+          }
+        >
+          <XPLevelBar />
+        </Suspense>
 
         {/* Main panels grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">

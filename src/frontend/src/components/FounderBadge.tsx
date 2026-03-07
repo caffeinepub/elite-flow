@@ -13,6 +13,7 @@ export function FounderBadge({ className = "" }: FounderBadgeProps) {
   );
 }
 
-export function isFounderUsername(username: string): boolean {
-  return username?.toLowerCase() === "fyodor";
+/** @deprecated Use `useIsFounder()` hook instead. Always returns false. */
+export function isFounderUsername(_username: string): boolean {
+  return false;
 }

@@ -7,11 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ExternalBlob } from "../backend";
 import Footer from "../components/Footer";
-import { FounderBadge, isFounderUsername } from "../components/FounderBadge";
+import { FounderBadge } from "../components/FounderBadge";
 import { getAvatarUrl } from "../hooks/useAvatarUrl";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import {
   useGetCallerUserProfile,
+  useIsFounder,
   useSaveCallerUserProfile,
 } from "../hooks/useQueries";
 import { getInitials, stringToColor } from "../lib/helpers";
@@ -20,6 +21,7 @@ export default function ProfilePage() {
   const { data: profile, isLoading } = useGetCallerUserProfile();
   const saveProfile = useSaveCallerUserProfile();
   const { identity } = useInternetIdentity();
+  const { data: isFounder } = useIsFounder();
 
   const [displayName, setDisplayName] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -99,7 +101,6 @@ export default function ProfilePage() {
   const currentDisplayName = profile?.displayName ?? "";
   const initials = getInitials(currentDisplayName || username);
   const avatarColor = stringToColor(currentDisplayName || username);
-  const isFounder = isFounderUsername(username);
   const principal = identity?.getPrincipal().toString();
 
   // Resolve the display avatar URL: prefer local preview, then saved avatarId

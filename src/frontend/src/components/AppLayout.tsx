@@ -15,9 +15,9 @@ import {
 import { useState } from "react";
 import { getAvatarUrl } from "../hooks/useAvatarUrl";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
-import { useGetCallerUserProfile } from "../hooks/useQueries";
+import { useGetCallerUserProfile, useIsFounder } from "../hooks/useQueries";
 import { getInitials, stringToColor } from "../lib/helpers";
-import { FounderBadge, isFounderUsername } from "./FounderBadge";
+import { FounderBadge } from "./FounderBadge";
 
 const navItems = [
   {
@@ -48,9 +48,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     queryClient.clear();
   };
 
+  const { data: isFounder } = useIsFounder();
   const displayName = userProfile?.displayName ?? "User";
   const username = userProfile?.username ?? "";
-  const isFounder = isFounderUsername(username);
   const initials = getInitials(displayName);
   const avatarColor = stringToColor(displayName);
 

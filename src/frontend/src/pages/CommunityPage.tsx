@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import type { Principal } from "@icp-sdk/core/principal";
 import { Bell, Loader2, MessageSquare, Plus, Search } from "lucide-react";
 import { useMemo, useState } from "react";
-import { FounderBadge, isFounderUsername } from "../components/FounderBadge";
+import { FounderBadge } from "../components/FounderBadge";
 import MessageBubble from "../components/MessageBubble";
 import MessageComposer from "../components/MessageComposer";
 import { getAvatarUrl } from "../hooks/useAvatarUrl";
@@ -159,9 +159,7 @@ function AnnouncementsTab() {
                         <span className="text-sm font-semibold">
                           {msg.authorUsername}
                         </span>
-                        {isFounderUsername(msg.authorUsername) && (
-                          <FounderBadge />
-                        )}
+                        <FounderBadge />
                         <span className="text-xs text-muted-foreground">
                           {formatTimestamp(msg.timestamp)}
                         </span>
@@ -307,7 +305,6 @@ function DMConversation({
             size="xs"
           />
           <span className="font-semibold text-sm">{otherUsername}</span>
-          {isFounderUsername(otherUsername) && <FounderBadge />}
         </div>
       </div>
 
@@ -418,7 +415,6 @@ function NewDMDialog({
                   <span className="text-sm font-medium truncate">
                     {u.displayName}
                   </span>
-                  {isFounderUsername(u.username) && <FounderBadge />}
                 </div>
                 <span className="text-xs text-muted-foreground">
                   @{u.username}
@@ -549,9 +545,6 @@ function DirectMessagesTab() {
                           <span className="text-sm font-medium truncate">
                             {conv.otherUsername}
                           </span>
-                          {isFounderUsername(conv.otherUsername) && (
-                            <span className="text-xs">👑</span>
-                          )}
                         </div>
                         <p className="text-xs text-muted-foreground truncate">
                           {conv.lastMessage}
