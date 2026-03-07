@@ -17,18 +17,7 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     sourcemap: false,
-    minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('@dfinity') || id.includes('@icp-sdk')) return 'icp';
-            if (id.includes('react') || id.includes('tanstack')) return 'vendor';
-            if (id.includes('lucide') || id.includes('radix-ui') || id.includes('cmdk')) return 'ui';
-          }
-        }
-      }
-    }
+    minify: false,
   },
   css: {
     postcss: "./postcss.config.js",

@@ -186,11 +186,8 @@ declare module "@tanstack/react-router" {
 export default function App() {
   const { identity, isInitializing } = useInternetIdentity();
   const isAuthenticated = !!identity;
-  const {
-    data: userProfile,
-    isLoading: profileLoading,
-    isFetched: profileFetched,
-  } = useGetCallerUserProfile();
+  const { data: userProfile, isFetched: profileFetched } =
+    useGetCallerUserProfile();
 
   // While auth is still initializing AND not yet authenticated, show landing
   // page immediately. This prevents blank screen during the auth check.
@@ -218,20 +215,12 @@ export default function App() {
     );
   }
 
-  if (profileLoading) {
-    return (
-      <>
-        <HideInitialLoader />
-        <LoadingScreen />
-      </>
-    );
-  }
-
+  // Only block for profile setup check once the query has settled.
+  // While profileFetched is still false we skip to the router so the
+  // dashboard shell renders immediately; each module handles its own
+  // loading state internally.
   const showProfileSetup =
-    isAuthenticated &&
-    !profileLoading &&
-    profileFetched &&
-    userProfile === null;
+    isAuthenticated && profileFetched && userProfile === null;
 
   if (showProfileSetup) {
     return (
